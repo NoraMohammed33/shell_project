@@ -2,6 +2,7 @@
 connect_DB(){
 
     echo -e "Welcome To $DB_name Database \n"
+    
     ./Table_menu.sh
     # select table in "Create Table" "List Tables" "Drop Table" "Insert To Table" "Select From Table" "Delete From Table" "Back To Main Menu"
     # do 
@@ -40,7 +41,8 @@ else
             echo $i 
         done
         echo -e "Write Down The Database You Want To Connect Into \n"
-        read DB_name
+        read dbname
+        export DB_name=$dbname
         if [ ! -d DB_engine/$DB_name ]
         then
             echo -e "This Database Isn't Exist \n"
