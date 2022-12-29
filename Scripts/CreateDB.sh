@@ -12,7 +12,7 @@ else
 
     echo -e "Enter the name of database \n"
     read DB_name
-    if [ -d $DB_name ]
+    if [ -d DB_engine/$DB_name ]
     then 
         echo -e "This Database Name is already made , Please Check the Database List  \n"
         ./MainMenu.sh
