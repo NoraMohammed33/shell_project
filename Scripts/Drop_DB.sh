@@ -5,7 +5,7 @@ if [ -d ./DB_engine] ;then
 
     for i in `ls -d`
     do
-       if($i ==$name)
+       if($i ==$name) ;then
           rm -r $i
           echo "database deleted successfuly"
           ./MainMenu.sh            
