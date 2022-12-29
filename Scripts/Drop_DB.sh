@@ -3,7 +3,7 @@ if [ -d ./DB_engine] ;then
     cd DB_engine
     read -p "enter Database Name " name
 
-    for i in 'ls -d'
+    for i in `ls -d`
     do
        if($i ==$name)
           rm -r $i

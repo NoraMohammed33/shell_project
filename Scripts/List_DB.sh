@@ -1,15 +1,14 @@
 #!/bin/bash
-if [ -d ./DB_engine] ;then
+if [ -d ./DB_engine ] ;then
 
-    cd DB_engine
     echo "i'm in DataBase_engine "
-    for i in `ls -d`
+    for i in `ls DB_engine `
     do
        echo $i
     done
-    ../MainMenu.sh
+    ./MainMenu.sh
 else
-   echo "Database engine has no databases"
-   ../MainMenu.sh
+   echo "Database Engine isn't made yet for now "
+   ./MainMenu.sh
 fi
   
