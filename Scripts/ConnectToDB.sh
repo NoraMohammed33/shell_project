@@ -1,5 +1,6 @@
 #!/bin/bash
 connect_DB(){
+   
 
     echo -e "Welcome To $DB_name Database \n"
     
@@ -45,6 +46,7 @@ else
         export DB_name=$dbname
         if [ ! -d DB_engine/$DB_name ]
         then
+         
             echo -e "This Database Isn't Exist \n"
             echo -e "Switching You To The Main Menu \n"
             ./MainMenu.sh

@@ -1,0 +1,7 @@
+The column index which have the primary key constraint :
+1
+ Table Columns :
+id name
+The data types of each column : 
+int string
+Note -> (int for integer number and string for string datatype )  

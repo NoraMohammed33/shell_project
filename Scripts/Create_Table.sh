@@ -1,7 +1,9 @@
 #!/bin/bash
 create_table()
-{
-    touch DB_engine/DB_name/$table_name
+{   
+    cd DB_engine/$DB_name
+    touch ./$table_names
+    #touch /home/noor/nooor.txt
     echo -e "Enter Columns you wanna be in the table (seperated by space)\n"
     read -a cols
     len_cols=${#cols[@]}
@@ -58,7 +60,9 @@ prim_key(){
     echo ${datatype[@]}>> $table_name #6
     echo -e "Note -> (int for integer number and string for string datatype )  " >>$table_name #7   
     echo -e "Your Table is Created Successfully \n"
+    cd -
     ./Table_menu.sh
+    
     
 }
 

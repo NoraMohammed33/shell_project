@@ -1,4 +1,5 @@
-#!/bin/bash       
+#!/bin/bash 
+cd DB_engine/$DB_name      
 tables_DB=($(ls))
 if [ ${#tables_DB[@]} -gt 0 ]
 then
@@ -13,13 +14,17 @@ then
     then 
          rm $table_name
          echo -e "Table is deleted successfully \n"
+         cd -
          ./Table_menu.sh
      else
          echo -e "This table isn't exist \n "
+          cd -
          ./Table_menu.sh
     fi
+    
 else
     echo -e "This database is already empty"
+     cd -
     ./Table_menu.sh
 fi
            
