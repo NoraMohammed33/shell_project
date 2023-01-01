@@ -6,16 +6,16 @@ if [ -f $table_name ]
 then
             
         insert_to(){
-            # primary=`sed -n '1p' $table_name`
-            # declare -a cols=($(sed -n '2p' $table_name))
+            primary=`sed -n '1p' $table_name`
+            declare -a cols=($(sed -n '2p' $table_name))
             
-            # declare -a datatype= ($(sed -n '3p' $table_name)) 
+            declare -a datatype=$(sed -n '3p' $table_name)
             
             # echo $primary
             # echo ${cols[@]}
             # echo ${datatype[@]}
-            # len_cols=${#cols[@]} # number of columns in the table 
-            # echo $len_cols
+            len_cols=${#cols[@]} # number of columns in the table 
+            #echo $len_cols
             echo -e "Insert the value of the row , Note ( the valid datatypes are integer and string ) \n"
             read -a record
            
@@ -23,9 +23,9 @@ then
             while [ $i -lt $len_cols ]  
             do
             arr=()
-                if [[ ${datatype[i]} == "int" ]]
+            read -a arr <<< "$datatype"
+                if [[ ${arr[i]} == "int" ]]
                 then
-                echo "jsjsuab"
                     if ! [[ ${record[i]} =~ ^[0-9]+$ ]]
 
                     then
@@ -37,7 +37,7 @@ then
                         if [ $i == $primary ] 
                         then
                             typeset -i pk_field=$i+1
-                            echo "khksk"
+                            
                             if [[ $(sed '1,2d' $table_name | cut -d " " -f $pk_field | grep -x ${record[i]} | sed '1!d') == ${record[i]} ]]
                             then
                                 echo -e "Primary Key value is already exist \n"
@@ -46,7 +46,7 @@ then
                             fi
                         fi
                     fi
-                elif [[ ${datatype[i]} == "string" ]]
+                elif [[ ${arr[i]} == "string" ]]
                 then
                     if ! [[ ${record[i]} =~ ^[a-zA-Z]+$ ]]
                     then
