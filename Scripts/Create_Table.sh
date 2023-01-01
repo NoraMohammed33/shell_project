@@ -7,9 +7,11 @@ create_table()
     #touch /home/noor/nooor.txt
     echo -e "Enter Columns you wanna be in the table (seperated by space)\n"
     read -a cols
+    export $cols
     len_cols=${#cols[@]}
     echo $len_cols
     typeset datatype[$len_cols]
+    export $datatype
     typeset -i var=0
     while [ $var -lt $len_cols ]
     do

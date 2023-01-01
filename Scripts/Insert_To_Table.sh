@@ -6,17 +6,16 @@ if [ -f $table_name ]
 then
             
         insert_to(){
-            primary=`sed -n '1p' $table_name`
-            declare -a cols
-            cols=($(sed -n '2p' $table_name))
+            # primary=`sed -n '1p' $table_name`
+            # declare -a cols=($(sed -n '2p' $table_name))
             
-            declare -a datatype=`sed -n '3p' $table_name` 
+            # declare -a datatype= ($(sed -n '3p' $table_name)) 
             
-            echo $primary
-            echo ${cols[@]}
-            echo ${datatype[@]}
-            len_cols=${#cols[@]} # number of columns in the table 
-            echo $len_cols
+            # echo $primary
+            # echo ${cols[@]}
+            # echo ${datatype[@]}
+            # len_cols=${#cols[@]} # number of columns in the table 
+            # echo $len_cols
             echo -e "Insert the value of the row , Note ( the valid datatypes are integer and string ) \n"
             read -a record
            
@@ -35,7 +34,7 @@ then
                     else
                  
                         
-                        if [ $i -eq $primary ] 
+                        if [ $i == $primary ] 
                         then
                             typeset -i pk_field=$i+1
                             echo "khksk"
