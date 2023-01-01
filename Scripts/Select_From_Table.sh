@@ -15,6 +15,8 @@ select_record(){
                 else
                     echo -e "Displaying all the records :\n"
                     sed '1,3d' $table_name
+                    cd -
+                    ./Table_menu.sh
                 fi
                 ;;
             "Select Record By Primary Key" )
@@ -26,11 +28,17 @@ select_record(){
                     let selected_record=$(cut -d " " -f $pk_field $table_name | grep -n -x $primary_key | cut -d: -f1)
                     echo -e "\n\nThe Record : \n"
                     sed -n "${selected_record}p" "$table_name"
+                    cd -
+                    ./Table_menu.sh
+
                 else
                     echo -e "The primary key value doesn't match any \n"
+                    cd -
+                    ./Table_menu.sh
                 fi
                 ;;
             "Back To Connect To Database Menu" )
+                cd -
                 ./ConnectToDB.sh;;
             * )
             echo -e "Please , Choose From the above list \n";;
@@ -38,6 +46,8 @@ select_record(){
         done
     else
         echo -e "Table isn't exist\n"
+        cd -
+        ./Table_menu.sh
     fi
 }
 select_record
