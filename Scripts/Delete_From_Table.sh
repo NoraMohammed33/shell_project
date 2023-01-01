@@ -18,13 +18,16 @@ delete_record()
             let deleted_record=$(cut -d " " -f$pk_field $table_name | grep -n -x $primary_key | cut -d: -f1)
              sed -i "${deleted_record}d" "$table_name"
              echo -e "The record is deleted successfully \n"
-             
+             cd -
+             ./Table_menu.sh
         else
             echo -e "The primary key value doesn't match any \n"
             delete_record
         fi
     else
         echo -e "There's no table with this name  \n"
+        cd -
+             ./Table_menu.sh
     fi
 }
 delete_record
