@@ -1,4 +1,5 @@
 #!/bin/bash
+
 create_table()
 {   
     cd DB_engine/$DB_name
@@ -7,6 +8,7 @@ create_table()
     echo -e "Enter Columns you wanna be in the table (seperated by space)\n"
     read -a cols
     len_cols=${#cols[@]}
+    echo $len_cols
     typeset datatype[$len_cols]
     typeset -i var=0
     while [ $var -lt $len_cols ]
@@ -35,13 +37,14 @@ prim_key(){
         do
             echo -e "Table Columns : ${cols[@]}\n"
             echo -e "Enter your the column index you want to give primary key constraint \n"
-            read primary
+            read  prim
+            export primary=$prim
             if [[ $primary =~ ^[0-9]+$ ]]
             then
                 if [ $primary -lt $len_cols ]
                 then
-                    echo -e "The column index which have the primary key constraint :" >> $table_name #1
-                    echo $primary >>$table_name #2
+                   # echo -e "The column index which have the primary key constraint :" >> $table_name #1
+                    echo $primary >>$table_name #1
                     break;
                 else
                     echo -e "Out of range of index columns"
@@ -54,11 +57,11 @@ prim_key(){
         done
     }
     prim_key
-    echo -e " Table Columns :" >> $table_name #3
+    #echo -e "Table Columns :" >> $table_name #3
     echo ${cols[@]} >> $table_name #4 
-    echo -e "The data types of each column : " >> $table_name #5
+   # echo -e "The data types of each column : " >> $table_name #5
     echo ${datatype[@]}>> $table_name #6
-    echo -e "Note -> (int for integer number and string for string datatype )  " >>$table_name #7   
+    #echo -e "Note -> (int for integer number and string for string datatype )  " >>$table_name #7   
     echo -e "Your Table is Created Successfully \n"
     cd -
     ./Table_menu.sh
@@ -83,6 +86,5 @@ else
     echo -e "The table name must be String Only \n"
     create_table
 fi    
-       
 
 
