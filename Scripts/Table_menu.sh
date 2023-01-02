@@ -1,5 +1,5 @@
 
-    select table in "Create Table" "List Tables" "Drop Table" "Insert To Table" "Select From Table" "Delete From Table" "Back To Main Menu"
+    select table in "Create Table" "List Tables" "Drop Table" "Insert To Table" "Select From Table" "Delete From Table" "update table" "Back To Main Menu"
     do 
         case $table in 
         "Create Table" )
@@ -14,6 +14,8 @@
          ./Select_From_Table.sh;;
          "Delete From Table" )
          ./Delete_From_Table.sh;;
+         "update table" )
+         ./Update_Table.sh;;
          "Back To Main Menu" )
          ./MainMenu.sh;;
          * )
