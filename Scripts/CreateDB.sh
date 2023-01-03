@@ -12,14 +12,20 @@ else
 
     echo -e "Enter the name of database \n"
     read DB_name
-    if [ -d DB_engine/$DB_name ]
-    then 
-        echo -e "This Database Name is already made , Please Check the Database List  \n"
-        ./MainMenu.sh
+    if [[ ! $DB_name =~ ^[a-zA-Z]+[0-9]$ ]]
+    then
+        echo -e "Enter a valid name (string only)"
+         ./MainMenu.sh
     else
-        create_DB
-        echo -e "Switch To Main Menu\n"
-        ./MainMenu.sh
+        if [[ -d DB_engine/$DB_name ]]
+        then 
+            echo -e "This Database Name is already made , Please Check the Database List  \n"
+            ./MainMenu.sh
+        else
+            create_DB
+            echo -e "Switch To Main Menu\n"
+            ./MainMenu.sh
+        fi
     fi
 fi
 

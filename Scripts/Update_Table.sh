@@ -81,7 +81,6 @@ update_table()
                 #echo "${nnn[@]}"
                 cat /dev/null >$table_name
                 echo -e "${nnn[@]}" >> $table_name
-               # echo "uuuuuuuuuu"
 
             fi
 
