@@ -43,13 +43,15 @@ update_table()
                        # echo $numpk
                     fi
                 done
-                samer=`awk -v pk="$primary_key" '
+                 echo -e "Enter the new value \n "
+                read newval
+                samer=`awk -v pk="$primary_key" -v nk="$numpk" '
                 BEGIN{i=0;
                     }
                     {
                         while(i< NR)
                         {
-                        if($1 == pk)
+                        if($nk== pk)
                           {
                             print NR
                           }
@@ -57,17 +59,30 @@ update_table()
                           }
                       }
                  ' $table_name`
-                 #echo $samer
+                 echo $samer
 
+                nnn=$(awk -v nrr="$samer" -v coln="$num" -v nv="$newval" -F" " '
+                    BEGIN{
+                        i=0;
+                        }
+                        
+                        {
+                            while(i< NR)
+                            {
+                            if(NR == nrr)
+                            {
+                              $coln=nv
+                            }
+                            i++
+                            }
+                        print $0 
+                        }
+                    ' $table_name)
+                #echo "${nnn[@]}"
+                cat /dev/null >$table_name
+                echo -e "${nnn[@]}" >> $table_name
+               # echo "uuuuuuuuuu"
 
-
-               
-                # samer=$(awk '
-                # {
-                #     echo"noor"
-                #     }
-                # ' $table_name)
-                # echo $samer
             fi
 
         fi
