@@ -43,3 +43,39 @@ update_table()
                        # echo $numpk
                     fi
                 done
+                samer=`awk -v pk="$primary_key" '
+                BEGIN{i=0;
+                    }
+                    {
+                        while(i< NR)
+                        {
+                        if($1 == pk)
+                          {
+                            print NR
+                          }
+                          i++
+                          }
+                      }
+                 ' $table_name`
+                 #echo $samer
+
+
+
+               
+                # samer=$(awk '
+                # {
+                #     echo"noor"
+                #     }
+                # ' $table_name)
+                # echo $samer
+            fi
+
+        fi
+}
+update_table   # Running the function 
+echo -e "Update is done successfully"
+cd -
+else
+    echo -e "There is no table with this name \n"
+    cd -
+fi
