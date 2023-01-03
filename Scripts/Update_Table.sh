@@ -40,31 +40,6 @@ update_table()
                     then
                         declare -i numpk=$i
                         numpk+=1
-                       # echo $numpks
+                       # echo $numpk
                     fi
                 done
-                awk '
-                BEGIN{
-                    RS ="\n"
-                    }
-                {
-                    {if( $1 == $primary_key ) print "jj" }   
-                }
-                 ' $table_name
-                # samer=$(awk '
-                # {
-                #     echo"noor"
-                #     }
-                # ' $table_name)
-                # echo $samer
-            fi
-
-        fi
-}
-update_table   # Running the function 
-echo -e "Update is done successfully"
-cd -
-else
-    echo -e "There is no table with this name \n"
-    cd -
-fi
