@@ -72,7 +72,7 @@ prim_key(){
        
 echo -e "Enter the name of the table \n"
 read table_name
-if [[ $table_name =~ ^[a-zA-Z]+$ ]]
+if [[ $table_name =~ ^[a-zA-Z]+[0-9]$ ]]
 then 
     if [ -f $table_name ]
     then 

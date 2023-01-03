@@ -59,7 +59,7 @@ update_table()
                           }
                       }
                  ' $table_name`
-                 echo $samer
+                 #echo $samer
 
                 nnn=$(awk -v nrr="$samer" -v coln="$num" -v nv="$newval" -F" " '
                     BEGIN{
@@ -83,13 +83,14 @@ update_table()
                 echo -e "${nnn[@]}" >> $table_name
 
             fi
-
         fi
 }
 update_table   # Running the function 
 echo -e "Update is done successfully"
-cd -
+  cd - 
+  ./Table_menu.sh
 else
     echo -e "There is no table with this name \n"
     cd -
+    ./Table_menu.sh
 fi

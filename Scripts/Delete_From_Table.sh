@@ -1,5 +1,4 @@
 #!/bin/bash
-
 delete_record()
 {
     cd DB_engine/$DB_name
@@ -11,7 +10,9 @@ delete_record()
             do
                 case $choice in 
                 "Delete All Records" )
-                   cat /dev/null >$table_name
+                   #cat /dev/null >$table_name
+                   sed -i '1,3!d' $table_name
+                     echo -e "all records are deleted successfully \n"
                         cd - 
                         ./Table_menu.sh
                     ;;

@@ -46,14 +46,13 @@ else
         export DB_name=$dbname
         if [ ! -d DB_engine/$DB_name ]
         then
-         
             echo -e "This Database Isn't Exist \n"
             echo -e "Switching You To The Main Menu \n"
             ./MainMenu.sh
         else
          connect_DB
         fi
-    else
+  else
         echo -e "Database Server is Empty \n"
         echo -e "Switching you To The Main Menu"
         ./MainMenu.sh

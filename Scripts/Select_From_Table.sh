@@ -5,7 +5,7 @@ select_record(){
     read table_name
     if [ -f $table_name ]
     then
-        select choice in "Select All Records" "Select Record By Primary Key" "Back To Connect To Database Menu"
+        select choice in "Select All Records" "Select Record By Primary Key" "Back To Table Menu"
         do
             case $choice in 
             "Select All Records" )
@@ -23,7 +23,7 @@ select_record(){
                 echo -e "Entering the Primarykey value of the record you wanna display \n"
                 read primary_key
                 typeset -i pk_field=$primary+1
-                if [[ $(sed '1,3d' $table_name | cut -d " " -f $pk_field | grep -x $primary_key | sed '1!d') ==  $primary_key ]]
+                if [[ $(sed '1,3d' $table_name | cut -d " " -f $pk_field | grep -x $primary_key ) ==  $primary_key ]]
                 then
                     let selected_record=$(cut -d " " -f $pk_field $table_name | grep -n -x $primary_key | cut -d: -f1)
                     echo -e "\n\nThe Record : \n"
@@ -37,9 +37,9 @@ select_record(){
                     ./Table_menu.sh
                 fi
                 ;;
-            "Back To Connect To Database Menu" )
+            "Back To Table Menu" )
                 cd -
-                ./ConnectToDB.sh;;
+                ./Table_menu.sh;;
             * )
             echo -e "Please , Choose From the above list \n";;
             esac

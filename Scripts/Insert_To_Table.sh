@@ -1,11 +1,5 @@
 #!/bin/bash
-cd DB_engine/$DB_name
-echo -e "Enter table name \n"
-read table_name
-if [ -f $table_name ]
-then
-            
-        insert_to(){
+insert_to(){
             primary=`sed -n '1p' $table_name`
             declare -a cols=($(sed -n '2p' $table_name))
             
@@ -33,15 +27,13 @@ then
                         insert_to
                     else
                  
-                        
                         if [ $i == $primary ] 
                         then
                             typeset -i pk_field=$i+1
                             
-                            if [[ $(sed '1,2d' $table_name | cut -d " " -f $pk_field | grep -x ${record[i]} | sed '1!d') == ${record[i]} ]]
+                            if [[ $(sed '1,2d' $table_name | cut -d " " -f $pk_field | grep -x ${record[i]} ) == ${record[i]} ]]
                             then
                                 echo -e "Primary Key value is already exist \n"
-                              
                                 insert_to
                             fi
                         fi
@@ -56,10 +48,9 @@ then
                         if [ $i -eq $primary ]
                         then
                             typeset -i pk_field=$i+1
-                            if [[ $(sed '1,7d' $table_name | cut -d " " -f $pk_field | grep -x ${record[i]} | sed '1!d') == ${record[i]} ]]
+                            if [[ $(sed '1,7d' $table_name | cut -d " " -f $pk_field | grep -x ${record[i]} ) == ${record[i]} ]]
                             then
                                 echo -e "Primary Key value is already exist \n"
-                               
                                 insert_to
                             fi
                         fi
@@ -71,13 +62,18 @@ then
                 i=$i+1
             done    
         }
+cd DB_engine/$DB_name
+echo -e "Enter table name \n"
+read table_name
+if [ -f $table_name ]
+then
         insert_to   # Running the function 
         echo -e "${record[@]}" >> $table_name #append the record into the table 
         echo -e "Insertion is done successfully"
         cd -
 else
-    echo -e "There is no table with this name \n"
-    cd -
+       echo -e "There is no table with this name \n"
+       cd -
 fi
 
 
