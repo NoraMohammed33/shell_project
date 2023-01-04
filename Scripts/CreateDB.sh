@@ -1,4 +1,7 @@
 #!/bin/bash
+export LC_COLLATE=C
+shopt -s extglob
+export rjx='^[A-Z | a-z][A-Za-z0-9]+$'
 #function for creating the database directory but first we check if the engine is already made or not
 create_DB(){
     mkdir DB_engine/$DB_name
@@ -12,7 +15,7 @@ else
 
     echo -e "Enter the name of database \n"
     read DB_name
-    if [[ ! $DB_name =~ ^[a-zA-Z]+$ ]]
+    if [[ ! $DB_name =~ $rjx ]]
     then
         echo -e "Enter a valid name (string only)"
          ./MainMenu.sh
