@@ -12,7 +12,7 @@ else
 
     echo -e "Enter the name of database \n"
     read DB_name
-    if [[ ! $DB_name =~ ^[a-zA-Z]+[0-9]$ ]]
+    if [[ ! $DB_name =~ ^[a-zA-Z]+$ ]]
     then
         echo -e "Enter a valid name (string only)"
          ./MainMenu.sh
